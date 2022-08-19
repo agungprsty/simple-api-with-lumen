@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd /var/www/html
+composer install
 php artisan key:generate
 php artisan jwt:secret
 php artisan migrate --seed

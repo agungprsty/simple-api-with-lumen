@@ -9,7 +9,7 @@ networks:
 
 services:
     app:
-        container_name: side-app
+        container_name: simple-api-app
         build:
             context: .
             dockerfile: Dockerfile
@@ -38,7 +38,7 @@ services:
             - lumen-app
 
     redis:
-        container_name: side-redis
+        container_name: simple-api-redis
         image: redis:latest
         volumes:
             - ./docker/redis:/data
@@ -50,7 +50,7 @@ services:
             - lumen-app
 
     db:
-        container_name: side-db
+        container_name: simple-api-db
         image: mysql:8.0
         volumes:
             - ./docker/mysql:/var/lib/mysql
@@ -65,7 +65,7 @@ services:
             - lumen-app
 
     pma:
-        container_name: side-pma
+        container_name: simple-api-pma
         image: phpmyadmin:latest
         depends_on:
             - db
@@ -77,7 +77,7 @@ services:
             - lumen-app
 
     rabbitmq:
-        container_name: side-rabbitmq
+        container_name: simple-api-rabbitmq
         image: rabbitmq:3-management-alpine
         ports:
             - 5673:5672
