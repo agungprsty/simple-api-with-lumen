@@ -40,11 +40,13 @@ generate-key:
 	docker-compose exec app php artisan key:generate
 migrate:
 	docker-compose exec app php artisan migrate
+migrate-seed:
+	docker-compose exec app php artisan migrate --seed
 fresh:
 	docker-compose exec app php artisan migrate:fresh --seed
 seed:
 	docker-compose exec app php artisan db:seed
-rollback-test:
+rollback:
 	docker-compose exec app php artisan migrate:fresh
 	docker-compose exec app php artisan migrate:refresh
 tinker:

@@ -62,4 +62,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             'exp' => Carbon::now()->addHours(2)->timestamp,
         ];
     }
+
+    public function post()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function todo()
+    {
+        return $this->hasMany(Todo::class);
+    }
 }
