@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
 use App\Repositories\AuthRepository;
+use Illuminate\Support\Facades\Log;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
@@ -29,7 +30,7 @@ class AuthController extends Controller
         try {
             return $this->authRepository->login($request);
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            Log::error($e->getMessage());
             throw $e;
         }
     }
@@ -44,7 +45,7 @@ class AuthController extends Controller
         try {
             return $this->authRepository->refresh();
         } catch (Exception $e) {
-            error_log($e->getMessage());
+            Log::error($e->getMessage());
             throw $e;
         }
     }
@@ -59,8 +60,23 @@ class AuthController extends Controller
         try {
             return $this->authRepository->logout();
         } catch (JWTException $e) {
-            error_log($e->getMessage());
+            Log::error($e->getMessage());
             return response()->json(['error' => 'token_invalid'], 401);
+        }
+    }
+
+    /**
+     * Get detail user.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        try {
+            return $this->authRepository->me();
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            throw $e;
         }
     }
 }

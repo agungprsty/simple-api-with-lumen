@@ -33,6 +33,7 @@ DB_PASSWORD=<your password>
 ```
 auth.php.example -> auth.php
 jwt.php.example -> jwt.php
+logging.php.example -> logging.php
 ```
 - set configuration as your needs 
 - for ``JWT_SECRET`` section by run : 

@@ -1,7 +1,6 @@
 <?php
 
 $router->group([
-    'middleware' => 'api',
     'prefix' => 'api'
 ], function () use ($router) {
     // Authentication 
@@ -15,9 +14,9 @@ $router->group([
 
     // Profile 
     $router->group([
+        'middleware' => 'api',
         'prefix' => 'profile'
     ], function ($router) {
-        $router->get('me', "ProfileController@me");
-        $router->get('hello', "ProfileController@sayHello");
+        $router->get('me', "AuthController@me");
     });
 });
