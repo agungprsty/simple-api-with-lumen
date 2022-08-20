@@ -14,12 +14,12 @@ class AuthRepository extends BaseRepository
     protected function respondWithToken($token)
     {
         return response()->json([
-            'data' => [
-                'access_token' => $token,
-            ],
             'meta' => [
                 'status' => 200,
                 'message' => 'Successfully logged in'
+            ],
+            'data' => [
+                'access_token' => $token,
             ]
         ]);
     }
@@ -71,13 +71,11 @@ class AuthRepository extends BaseRepository
     public function me()
     {
         return response()->json([
-            'data' => [
-                'user' => auth()->user(),
-            ],
             'meta' => [
                 'status' => 200,
                 'message' => 'OK'
-            ]
+            ],
+            'data' => auth()->user()
         ]);
     }
 }

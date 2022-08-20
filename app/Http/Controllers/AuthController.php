@@ -63,4 +63,19 @@ class AuthController extends Controller
             return response()->json(['error' => 'token_invalid'], 401);
         }
     }
+
+    /**
+     * Get detail user.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        try {
+            return $this->authRepository->me();
+        } catch (Exception $e) {
+            error_log($e->getMessage());
+            throw $e;
+        }
+    }
 }
