@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Throwable;
-use App\Http\Requests\PostRequest;
-use App\Repositories\PostRepository;
+use App\Http\Requests\TodoRequest;
+use App\Repositories\TodoRepository;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Response;
 
-class PostController extends Controller
+class TodoController extends Controller
 {
     protected $repo;
     
-    public function __construct(PostRepository $postRepository)
+    public function __construct(TodoRepository $todoRepository)
     {
         $this->middleware('auth:api');
-        $this->repo = $postRepository;
+        $this->repo = $todoRepository;
     }
 
     /**
@@ -42,15 +42,15 @@ class PostController extends Controller
     } 
 
     /**
-     * Get all post.
+     * Get all todo.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function all()
     {
         try {
-            $post = $this->repo->all();
-            return $this->responses($post);
+            $todo = $this->repo->all();
+            return $this->responses($todo);
         } catch (Throwable $e) {
             Log::error($e->getMessage());
             throw $e;
@@ -58,19 +58,19 @@ class PostController extends Controller
     }
 
     /**
-     * Get by id post.
+     * Get by id todo.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function get_by_id(string $id)
     {
         try {
-            $post = $this->repo->get_by_id($id);
-            if (!$post){
-                return $this->responses($post, '404');
+            $todo = $this->repo->get_by_id($id);
+            if (!$todo){
+                return $this->responses($todo, '404');
             }
 
-            return $this->responses($post);
+            return $this->responses($todo);
         } catch (Throwable $e) {
             Log::error($e->getMessage());
             throw $e;
@@ -78,16 +78,16 @@ class PostController extends Controller
     }
 
     /**
-     * Create new post
+     * Create new todo
      *
-     * @param  PostRequest  $request
+     * @param  TodoRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(PostRequest $request)
+    public function store(TodoRequest $request)
     {
         try {
-            $post = $this->repo->store($request);
-            return $this->responses($post);
+            $todo = $this->repo->store($request);
+            return $this->responses($todo);
         } catch (Throwable $e) {
             Log::error($e->getMessage());
             throw $e;
@@ -95,20 +95,20 @@ class PostController extends Controller
     }
 
     /**
-     * Update post
+     * Update todo
      *
-     * @param  PostRequest  $request
+     * @param  TodoRequest  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(string $id, PostRequest $request)
+    public function update(string $id, TodoRequest $request)
     {
         try {
-            $post = $this->repo->get_by_id($id);
-            if (!$post){
-                return $this->responses($post, '404');
+            $todo = $this->repo->get_by_id($id);
+            if (!$todo){
+                return $this->responses($todo, '404');
             }
 
-            $data = $this->repo->update($post, $request);
+            $data = $this->repo->update($todo, $request);
             return $this->responses($data);
         } catch (Throwable $e) {
             Log::error($e->getMessage());
@@ -117,7 +117,7 @@ class PostController extends Controller
     }
 
     /**
-     * Delete post
+     * Delete todo
      *
      * @return \Illuminate\Http\JsonResponse
      */

@@ -33,4 +33,16 @@ $router->group([
         $router->get('{id}', "PostController@get_by_id");
         $router->delete('{id}', "PostController@delete");
     });
+
+    // todos 
+    $router->group([
+        'middleware' => 'api',
+        'prefix' => 'todo'
+    ], function ($router) {
+        $router->get('', "TodoController@all");
+        $router->post('', 'TodoController@store');
+        $router->put('{id}', "TodoController@update");
+        $router->get('{id}', "TodoController@get_by_id");
+        $router->delete('{id}', "TodoController@delete");
+    });
 });

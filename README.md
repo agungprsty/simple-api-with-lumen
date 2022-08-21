@@ -12,8 +12,8 @@ Build a simple API with Lumen Framework
 - Lumen ^9.0
 - MySql 8.0
 
-### Installation 
-- clone [use this template](https://github.com/agungprsty/simple-api-with-lumen/generate)
+### Usage 
+- click [use this template](https://github.com/agungprsty/simple-api-with-lumen/generate)
 - composer install
 - copy ``.env.example`` to ``.env``
 - set ``APP_KEY`` execute command :
