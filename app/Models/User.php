@@ -63,13 +63,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         ];
     }
 
-    public function post()
+    public function posts()
     {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'uid');
     }
 
-    public function todo()
+    public function todos()
     {
-        return $this->hasMany(Todo::class);
+        return $this->hasMany(Todo::class, 'uid');
     }
 }
