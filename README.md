@@ -5,15 +5,15 @@
 </p>
 
 ## Introduction
-Build a simple API with Lumen Framework 
+Build a simple API with Lumen Framework. This application already implementation JWT for authorization and UUID identifier ID.
 
 ### Requirement
 - PHP ^8.0
 - Lumen ^9.0
 - MySql 8.0
 
-### Installation 
-- clone [use this template](https://github.com/agungprsty/simple-api-with-lumen/generate)
+### Usage 
+- click [use this template](https://github.com/agungprsty/simple-api-with-lumen/generate)
 - composer install
 - copy ``.env.example`` to ``.env``
 - set ``APP_KEY`` execute command :
@@ -51,3 +51,31 @@ php artisan migrate --seed
 php -S lumen:8000 -t public
 ```
 
+### Usage service
+
+- open postman or insomnia
+- create new request authentication
+```
+- add name Login, 
+- method POST
+- url http://localhost:8080/api/auth/login
+- add header 
+  - Content-Type = application/json
+- add body json 
+  {
+	"email": "develop@example.com",
+	"password": "12345678"
+  }
+```
+
+- create new request profile
+```
+- add name Me, 
+- method GET
+- url http://localhost:8080/api/profile/me
+- add header 
+  - Content-Type = application/json
+  - Authorization = bearer {ACCESS_TOKEN}
+```
+
+- Next ``do the same thing as request profile for post and todo service.``
